@@ -36,7 +36,7 @@ export const Ripple = React.memo(function Ripple({
                     <div
                         key={i}
                         className={cn(
-                            "animate-ripple absolute rounded-full border shadow-xl bg-emerald-200",
+                            "animate-ripple absolute rounded-full border shadow-xl bg-emerald-200 ",
                             borderColor
                         )}
                         style={
