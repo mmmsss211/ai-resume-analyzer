@@ -4,6 +4,9 @@ import { AnimatedShinyText } from "~/components/ui/animated-shiny-text";
 import Navbar from "~/components/Navbar";
 import ResumeCard from "~/components/ResumeCard";
 import { resumes } from "~/constants";
+import { useEffect } from "react";
+import { usePuterStore } from "~/lib/puter";
+import { useLocation, useNavigate } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,8 +16,18 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  const { auth, isLoading } = usePuterStore();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoading && !auth.isAuthenticated) {
+      navigate("/auth?next=");
+    }
+  }, [auth.isAuthenticated, isLoading]);
+  
   return (
-    <main className="">
+    <main>
       <section className="flex flex-col items-center text-center relative">
         <Navbar />
         <div className="pt-20 pb-28 max-w-[400px] flex flex-col gap-5 z-10">
@@ -34,7 +47,7 @@ export default function Home() {
           <Ripple borderColor={"border-emerald-950"} />
         </div>
       </section>
-      <section className="relative max-w-5xl mx-auto px-4 z-20 grid grid-cols-3 gap-4">
+      <section className="relative max-w-5xl mx-auto px-4 z-20 grid grid-cols-1 gap-4 sm:grid-cols-3">
         {resumes.length < 0 ? (
           <h1>No resumes found</h1>
         ) : (
