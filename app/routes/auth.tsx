@@ -39,7 +39,7 @@ const Auth = () => {
   };
 
   return (
-    <main>
+    <main className="pb-10">
       <section className="flex flex-col items-center text-center relative">
         <div className="pt-20 pb-28 max-w-[400px] flex flex-col gap-5 z-10">
           <div className="flex justify-center">
