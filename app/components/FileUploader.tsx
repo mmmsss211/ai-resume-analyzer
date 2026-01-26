@@ -13,7 +13,7 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
       const file = acceptedFile[0] || null;
       onFileSelect?.(file);
     },
-    [onFileSelect]
+    [onFileSelect],
   );
 
   const maxFileSize = 20 * 1024 * 1024;
@@ -22,24 +22,27 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
     useDropzone({
       onDrop,
       multiple: false,
-      accept: { "application/pdf": ["pdf"] },
+      accept: { "application/pdf": [".pdf"] },
       maxSize: maxFileSize,
     });
 
   const file = acceptedFiles[0] || null;
 
   return (
-    <div className="flex flex-col h-full  border-dashed border-emerald-900/40 rounded-sm p-1.5 cursor-pointer bg-emerald-900/10">
+    <div className="flex flex-col h-full  border-dashed border-emerald-900/40 rounded-sm p-1.5 cursor-pointer bg-emerald-900/10 hover:bg-emerald-900/5 transition-all duration-200">
       <div
         {...getRootProps()}
         className={cn(
           "w-full h-full border-dashed border border-emerald-900/30 rounded-xs cursor-pointer p-5 flex flex-col items-center justify-center",
-          file ? "" : "min-h-[150px]"
+          file ? "" : "min-h-[150px]",
         )}
       >
         <input {...getInputProps()} />
         {file ?
-          <div className="text-sm text-gray-500 flex flex-row items-center justify-between w-full bg-white p-3 rounded" onClick={(e)=>e.stopPropagation()}>
+          <div
+            className="text-sm text-gray-500 flex flex-row items-center justify-between w-full bg-white p-3 rounded"
+            onClick={(e) => e.stopPropagation()}
+          >
             {" "}
             <div className="flex flex-col items-left">
               {file.name}
@@ -47,11 +50,14 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
                 ({formatSize(file.size)})
               </span>
             </div>
-            <button className="cursor-pointer" onClick={(e)=> {
+            <button
+              className="cursor-pointer"
+              onClick={(e) => {
                 e.stopPropagation();
                 onFileSelect?.(null);
-            }}>
-            <Trash animateOnHover size={16}/>
+              }}
+            >
+              <Trash animateOnHover size={16} />
             </button>
           </div>
         : <div className="flex flex-col items-center gap-1 text-center">

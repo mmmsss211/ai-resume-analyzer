@@ -35,11 +35,12 @@ const Upload = () => {
     try {
       setIsProcessing(true);
       setStatusText("Processing...");
-      
+
       console.log("Uploading resume...");
       // Handle potential array return from fs.upload
       const uploadResult = await fs.upload([file]);
-      const uploadedFile = Array.isArray(uploadResult) ? uploadResult[0] : uploadResult;
+      const uploadedFile =
+        Array.isArray(uploadResult) ? uploadResult[0] : uploadResult;
 
       console.log("Resume upload result:", uploadedFile);
 
@@ -59,7 +60,10 @@ const Upload = () => {
       setStatusText("Uploading the image...");
 
       const imageUploadResult = await fs.upload([imageFile.file]);
-      const uploadedImage = Array.isArray(imageUploadResult) ? imageUploadResult[0] : imageUploadResult;
+      const uploadedImage =
+        Array.isArray(imageUploadResult) ?
+          imageUploadResult[0]
+        : imageUploadResult;
 
       console.log("Image upload result:", uploadedImage);
 
@@ -94,13 +98,13 @@ const Upload = () => {
         setIsProcessing(false);
         return setStatusText("Failed to analyze");
       }
-      
+
       console.log("Feedback received:", feedback);
 
       const feedbackText =
-        typeof feedback.message.content === "string"
-          ? feedback.message.content
-          : feedback.message.content[0].text;
+        typeof feedback.message.content === "string" ?
+          feedback.message.content
+        : feedback.message.content[0].text;
 
       data.feedback = JSON.parse(feedbackText);
 
@@ -108,13 +112,12 @@ const Upload = () => {
 
       setStatusText("Analysis complete, redirecting...");
       console.log(data);
-      
-      // Redirect or finish
-      // navigate(`/resume/${uuid}`); // Example if you want to redirect
-      setIsProcessing(false); 
+      navigate(`/resume/${uuid}`);
     } catch (error) {
       console.error("Error in handleAnalyze:", error);
-      setStatusText("Error: " + (error instanceof Error ? error.message : "Unknown error"));
+      setStatusText(
+        "Error: " + (error instanceof Error ? error.message : "Unknown error")
+      );
       setIsProcessing(false);
     }
   };
@@ -147,7 +150,9 @@ const Upload = () => {
             Smart feedback for your dream job
           </h1>
           <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4">
-            {statusText ? statusText : "Upload your resume and let our AI analyze it for you."}
+            {statusText ?
+              statusText
+            : "Upload your resume and let our AI analyze it for you."}
           </p>
         </div>
         <div className="absolute h-[500px] w-full overflow-hidden z-0">
