@@ -78,7 +78,7 @@ const Upload = () => {
       const data = {
         id: uuid,
         resumePath: uploadedFile.path,
-        iamgePath: uploadedImage.path,
+        imagePath: uploadedImage.path,
         companyName,
         jobTitle,
         jobDescription,
@@ -91,7 +91,7 @@ const Upload = () => {
 
       const feedback = await ai.feedback(
         uploadedFile.path,
-        prepareInstructions({ jobTitle, jobDescription })
+        prepareInstructions({ jobTitle, jobDescription }),
       );
 
       if (!feedback) {
@@ -116,7 +116,7 @@ const Upload = () => {
     } catch (error) {
       console.error("Error in handleAnalyze:", error);
       setStatusText(
-        "Error: " + (error instanceof Error ? error.message : "Unknown error")
+        "Error: " + (error instanceof Error ? error.message : "Unknown error"),
       );
       setIsProcessing(false);
     }
@@ -144,12 +144,12 @@ const Upload = () => {
   return (
     <main className="pb-20">
       <section className="flex flex-col items-center text-center relative">
-        <Navbar />
+        <Navbar link="/" buttonText="Home" />
         <div className="pt-20 pb-12 max-w-[400px] flex flex-col gap-5 z-10">
-          <h1 className="text-5xl font-medium text-emerald-900">
+          <h1 className="text-5xl font-medium text-emerald-900 animate-in fade-in duration-1000">
             Smart feedback for your dream job
           </h1>
-          <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4">
+          <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4 animate-in fade-in duration-1000">
             {statusText ?
               statusText
             : "Upload your resume and let our AI analyze it for you."}
@@ -173,7 +173,7 @@ const Upload = () => {
             onSubmit={handleSubmit}
             className="z-10 flex flex-col gap-5 w-[500px]"
           >
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 animate-in fade-in duration-1000">
               <label
                 htmlFor="company-name"
                 className="text-sm font-medium text-emerald-900"
@@ -188,7 +188,7 @@ const Upload = () => {
                 className="border bg-white border-emerald-900/40 rounded-sm p-3 focus:border-emerald-900 focus:ring-emerald-900 focus:ring-1 focus:outline-none"
               />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 animate-in fade-in duration-1000">
               <label
                 htmlFor="job-title"
                 className="text-sm font-medium text-emerald-900"
@@ -203,7 +203,7 @@ const Upload = () => {
                 className="border bg-white border-emerald-900/40 rounded-sm p-3 focus:border-emerald-900 focus:ring-emerald-900 focus:ring-1 focus:outline-none"
               />
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 animate-in fade-in duration-1000">
               <label
                 htmlFor="job-description"
                 className="text-sm font-medium text-emerald-900"
@@ -218,7 +218,7 @@ const Upload = () => {
                 className="border bg-white border-emerald-900/40 rounded-sm p-3 focus:border-emerald-900 focus:ring-emerald-900 focus:ring-1 focus:outline-none"
               ></textarea>
             </div>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 animate-in fade-in duration-1000">
               <label
                 htmlFor="uploader"
                 className="text-sm font-medium text-emerald-900"
@@ -229,7 +229,7 @@ const Upload = () => {
             </div>
             <Button
               type="submit"
-              className="text-sm font-normal rounded-sm bg-emerald-800 hover:bg-emerald-900 cursor-pointer"
+              className="text-sm font-normal rounded-sm bg-emerald-800 hover:bg-emerald-900 cursor-pointer animate-in fade-in duration-1000"
             >
               Upload
             </Button>

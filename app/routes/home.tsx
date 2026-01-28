@@ -25,11 +25,11 @@ export default function Home() {
       navigate("/auth?next=");
     }
   }, [auth.isAuthenticated, isLoading]);
-  
+
   return (
     <main>
       <section className="flex flex-col items-center text-center relative">
-        <Navbar />
+        <Navbar link="/upload" buttonText="Upload Resume" />
         <div className="pt-20 pb-28 max-w-[400px] flex flex-col gap-5 z-10">
           <div className="flex justify-center">
             <div className="flex justify-center rounded-full bg-white py-1 px-4 text-xs mb-2">
@@ -48,13 +48,12 @@ export default function Home() {
         </div>
       </section>
       <section className="relative max-w-5xl mx-auto px-4 z-20 grid grid-cols-1 gap-4 sm:grid-cols-3">
-        {resumes.length < 0 ? (
+        {resumes.length < 0 ?
           <h1>No resumes found</h1>
-        ) : (
-          resumes.map((resume) => (
+        : resumes.map((resume) => (
             <ResumeCard key={resume.id} resume={resume} />
           ))
-        )}
+        }
       </section>
     </main>
   );
