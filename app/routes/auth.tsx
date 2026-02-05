@@ -48,13 +48,13 @@ const Auth = () => {
             </div>
           </div>
           <h1 className="text-5xl font-medium text-emerald-900">
-            Let's get you ready
+            Start Reviewing Resumes
           </h1>
           <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4">
             Sign in to your account and start using in seconds.
           </p>
           <div className="w-full">
-            {auth.isAuthenticated ? (
+            {auth.isAuthenticated ?
               <Button
                 onClick={handleSignOut}
                 disabled={isSigningIn}
@@ -62,15 +62,14 @@ const Auth = () => {
               >
                 {isSigningIn ? "Logging out..." : "Logout"}
               </Button>
-            ) : (
-              <Button
+            : <Button
                 onClick={handleSignIn}
                 disabled={isSigningIn}
                 className="text-sm font-normal rounded-sm bg-emerald-800 hover:bg-emerald-900 cursor-pointer"
               >
                 {isSigningIn ? "Signing in..." : "Sign In"}
               </Button>
-            )}
+            }
           </div>
         </div>
         <div className="absolute h-[500px] w-full overflow-hidden z-0">

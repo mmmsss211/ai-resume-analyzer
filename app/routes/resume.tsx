@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import Navbar from "~/components/Navbar";
 import { Ripple } from "~/components/ui/ripple";
 import { useEffect, useState } from "react";
@@ -55,6 +56,34 @@ const Resume = () => {
     loadResume();
   }, [id]);
 
+  /* sticky logic */
+  /* sticky logic */
+  const { scrollY } = useScroll();
+  const smoothScrollY = useSpring(scrollY, {
+    mass: 0.5,
+    damping: 50,
+    stiffness: 200,
+    restDelta: 0.001,
+  });
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const y = useTransform(
+    [scrollY, smoothScrollY],
+    ([latest, smooth]: number[]) => {
+      if (isMobile) return 0;
+      // "Lag" effect: element moves opposite to scroll briefly, then catches up
+      // When scrolling down, smooth < latest => negative value (moves up) then settles to 0
+      return smooth - latest;
+    },
+  );
+
   return (
     <main>
       <section className="flex flex-col items-center text-center relative">
@@ -64,7 +93,10 @@ const Resume = () => {
         </div>
       </section>
       <section className="p-4 relative flex flex-col-reverse lg:grid lg:grid-cols-2 gap-8 w-full max-w-5xl mx-auto z-50">
-        <div className="animate-in fade-in duration-1000">
+        <motion.div
+          className="animate-in fade-in duration-1000 lg:sticky lg:top-20 self-start"
+          style={{ y }}
+        >
           {imageUrl && resumeUrl && (
             <a>
               <img
@@ -74,7 +106,7 @@ const Resume = () => {
               />
             </a>
           )}
-        </div>
+        </motion.div>
         <div className="animate-in fade-in duration-1000">
           {feedback ?
             <div className="flex flex-col gap-4">

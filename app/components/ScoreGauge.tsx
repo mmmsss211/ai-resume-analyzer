@@ -56,8 +56,8 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
           />
         </svg>
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-          <div className="text-xl font-semibold pt-4">{score}/100</div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center pt-6">
+          <div className="text-xl font-semibold pt-4">{score} / 100</div>
         </div>
       </div>
     </div>
