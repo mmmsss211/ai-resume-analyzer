@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { usePuterStore } from "~/lib/puter";
 
+export const meta = () => [
+  { title: "Resiomai | Wipe Data" },
+  { name: "description", content: "Reset application data" },
+];
+
 const WipeApp = () => {
   const { auth, isLoading, error, clearError, fs, ai, kv } = usePuterStore();
   const navigate = useNavigate();

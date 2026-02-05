@@ -5,10 +5,15 @@ import { useState } from "react";
 import { Button } from "~/components/ui/button";
 import FileUploader from "~/components/FileUploader";
 import { usePuterStore } from "~/lib/puter";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { convertPdfToImage } from "~/lib/pdf2img";
 import { generateUUID } from "~/lib/utils";
 import { prepareInstructions } from "~/constants";
+
+export const meta = () => [
+  { title: "Resiomai | Upload" },
+  { name: "description", content: "Upload your resume for AI analysis" },
+];
 
 const Upload = () => {
   const { auth, isLoading, fs, ai, kv } = usePuterStore();

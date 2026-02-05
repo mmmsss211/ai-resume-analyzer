@@ -10,7 +10,7 @@ import type { Resume } from "@/types";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Veltigore Resumai" },
+    { title: "Resiomai | Home" },
     { name: "description", content: "Smart resume generator" },
   ];
 }
