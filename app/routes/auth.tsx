@@ -44,7 +44,7 @@ const Auth = () => {
         <div className="pt-20 pb-28 max-w-[400px] flex flex-col gap-5 z-10">
           <div className="flex justify-center">
             <div className="flex justify-center rounded-full bg-white py-1 px-4 text-xs mb-2">
-              <AnimatedShinyText>Sign in to your account</AnimatedShinyText>
+              <AnimatedShinyText>AI-Powered · Free · Instant</AnimatedShinyText>
             </div>
           </div>
           <h1 className="text-5xl font-medium text-emerald-900 text-balance">
