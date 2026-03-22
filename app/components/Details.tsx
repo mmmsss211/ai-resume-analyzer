@@ -49,32 +49,40 @@ const CategoryContent = ({
   tips: { type: "good" | "improve"; tip: string; explanation: string }[];
 }) => {
   return (
-    <div className="flex flex-col gap-6 w-full">
-      <div className="flex flex-col gap-3 text-sm">
-        {tips.map((tip, index) => (
-          <div className="flex flex-row gap-3 items-start" key={index}>
+    <div className="flex flex-col gap-4 w-full">
+      {tips.map((tip, index) => (
+        <div
+          key={index}
+          className={cn(
+            "rounded-md border-l-4 p-4",
+            tip.type === "good"
+              ? "border-green-500 bg-green-50"
+              : "border-yellow-500 bg-yellow-50",
+          )}
+        >
+          <div className="flex flex-row gap-2 items-center mb-2">
             {tip.type === "good" ?
-              <Check className="size-5 text-green-600 shrink-0" />
-            : <TriangleAlert className="size-5 text-yellow-600 shrink-0" />}
-            <p className="text-gray-700">{tip.tip}</p>
+              <Check className="size-4 text-green-600 shrink-0" />
+            : <TriangleAlert className="size-4 text-yellow-600 shrink-0" />}
+            <p
+              className={cn(
+                "text-sm font-semibold",
+                tip.type === "good" ? "text-green-800" : "text-yellow-800",
+              )}
+            >
+              {tip.tip}
+            </p>
           </div>
-        ))}
-      </div>
-      <div className="flex flex-col gap-3 w-full">
-        {tips.map((tip, index) => (
-          <div
-            key={index + tip.tip}
+          <p
             className={cn(
-              "p-4 rounded-md",
-              tip.type === "good" ?
-                "bg-green-50 text-green-900"
-              : "bg-yellow-50 text-yellow-900",
+              "text-sm leading-relaxed ml-6",
+              tip.type === "good" ? "text-green-900/80" : "text-yellow-900/80",
             )}
           >
-            <p className="text-sm leading-relaxed">{tip.explanation}</p>
-          </div>
-        ))}
-      </div>
+            {tip.explanation}
+          </p>
+        </div>
+      ))}
     </div>
   );
 };

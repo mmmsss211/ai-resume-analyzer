@@ -42,7 +42,7 @@ const Summary = ({ feedback }: { feedback: Feedback }) => {
       </div>
       <div className="flex flex-col gap-2">
         <Category
-          title="Overall Score"
+          title="Tone & Style"
           score={feedback.toneAndStyle.score || 0}
         />
         <Category title="Content" score={feedback.content.score || 0} />
