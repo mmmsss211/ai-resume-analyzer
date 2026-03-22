@@ -65,7 +65,18 @@ export default function Home() {
       </section>
       <section className="relative max-w-5xl mx-auto px-4 z-20 flex flex-wrap justify-center gap-4">
         {resumes.length === 0 ?
-          <h1>No resumes found</h1>
+          <div className="flex flex-col items-center gap-3 py-16 text-center">
+            <p className="text-lg font-medium text-emerald-900">No resumes yet</p>
+            <p className="text-sm text-gray-400 max-w-[260px]">
+              Upload your first resume to get an instant AI-powered score and feedback.
+            </p>
+            <a
+              href="/upload"
+              className="mt-2 inline-flex items-center justify-center h-11 px-5 rounded-sm bg-emerald-800 hover:bg-emerald-900 text-white text-sm transition-colors"
+            >
+              Upload a Resume
+            </a>
+          </div>
         : resumes.map((resume) => (
             <div key={resume.id} className="w-full sm:w-[320px]">
               <ResumeCard resume={resume} />
