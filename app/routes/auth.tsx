@@ -47,11 +47,11 @@ const Auth = () => {
               <AnimatedShinyText>AI-Powered · Free · Instant</AnimatedShinyText>
             </div>
           </div>
-          <h1 className="text-5xl font-medium text-emerald-900 text-balance">
+          <h1 className="font-display text-5xl font-semibold text-emerald-900 text-balance leading-tight">
             Start Reviewing Resumes
           </h1>
           <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4">
-            Sign in to your account and start using in seconds.
+            Instant AI feedback on your resume — free, fast, and private.
           </p>
           <div className="w-full">
             {auth.isAuthenticated ?

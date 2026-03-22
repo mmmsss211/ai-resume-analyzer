@@ -52,7 +52,7 @@ export default function Home() {
               <AnimatedShinyText>AI Powered resume generator</AnimatedShinyText>
             </div>
           </div>
-          <h1 className="text-5xl font-medium text-emerald-900 text-balance">
+          <h1 className="font-display text-5xl font-semibold text-emerald-900 text-balance leading-tight">
             Track Applications & Resume Ratings
           </h1>
           <p className="text-lg text-emerald-700">

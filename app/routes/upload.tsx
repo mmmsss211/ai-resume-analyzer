@@ -159,7 +159,7 @@ const Upload = () => {
       <section className="flex flex-col items-center text-center relative">
         <Navbar link="/" buttonText="Home" />
         <div className="pt-20 pb-12 max-w-[400px] flex flex-col gap-5 z-10">
-          <h1 className="text-5xl font-medium text-emerald-900 text-balance animate-in fade-in duration-1000">
+          <h1 className="font-display text-5xl font-semibold text-emerald-900 text-balance leading-tight animate-in fade-in duration-1000">
             Smart feedback for your dream job
           </h1>
           <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4 animate-in fade-in duration-1000">
