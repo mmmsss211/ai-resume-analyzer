@@ -47,7 +47,7 @@ const Auth = () => {
               <AnimatedShinyText>Sign in to your account</AnimatedShinyText>
             </div>
           </div>
-          <h1 className="text-5xl font-medium text-emerald-900">
+          <h1 className="text-5xl font-medium text-emerald-900 text-balance">
             Start Reviewing Resumes
           </h1>
           <p className="text-lg text-emerald-700 max-w-[300px] mx-auto mb-4">
