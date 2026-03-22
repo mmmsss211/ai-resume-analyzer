@@ -244,7 +244,7 @@ const Upload = () => {
               type="submit"
               className="text-sm font-normal rounded-sm bg-emerald-800 hover:bg-emerald-900 cursor-pointer animate-in fade-in duration-1000"
             >
-              Upload
+              Analyze Resume
             </Button>
           </form>
         }
