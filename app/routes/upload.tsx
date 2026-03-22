@@ -7,8 +7,8 @@ import FileUploader from "~/components/FileUploader";
 import { usePuterStore } from "~/lib/puter";
 import { useNavigate, useParams } from "react-router";
 import { convertPdfToImage } from "~/lib/pdf2img";
+import { extractTextFromPdf } from "~/lib/pdf2text";
 import { generateUUID } from "~/lib/utils";
-import { prepareInstructions } from "~/constants";
 
 export const meta = () => [
   { title: "Resiomai | Upload" },
@@ -16,7 +16,7 @@ export const meta = () => [
 ];
 
 const Upload = () => {
-  const { auth, isLoading, fs, ai, kv } = usePuterStore();
+  const { auth, isLoading, fs, kv } = usePuterStore();
   const navigate = useNavigate();
   const [isProcessing, setIsProcessing] = useState(false);
   const [statusText, setStatusText] = useState("");
@@ -92,26 +92,34 @@ const Upload = () => {
 
       await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
-      setStatusText("Analyzing...");
+      setStatusText("Extracting text from resume...");
 
-      const feedback = await ai.feedback(
-        uploadedFile.path,
-        prepareInstructions({ jobTitle, jobDescription }),
-      );
-
-      if (!feedback) {
+      const resumeText = await extractTextFromPdf(file);
+      if (!resumeText) {
         setIsProcessing(false);
-        return setStatusText("Failed to analyze");
+        return setStatusText("Failed to extract text from PDF");
       }
 
+      setStatusText("Analyzing...");
+
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ resumeText, jobTitle, jobDescription }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        setIsProcessing(false);
+        return setStatusText(
+          "Failed to analyze: " + (errorData.error || "Unknown error"),
+        );
+      }
+
+      const feedback = await response.json();
       console.log("Feedback received:", feedback);
 
-      const feedbackText =
-        typeof feedback.message.content === "string" ?
-          feedback.message.content
-        : feedback.message.content[0].text;
-
-      data.feedback = JSON.parse(feedbackText);
+      data.feedback = feedback;
 
       await kv.set(`resume:${uuid}`, JSON.stringify(data));
 
