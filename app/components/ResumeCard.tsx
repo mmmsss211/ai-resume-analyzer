@@ -25,7 +25,7 @@ const ResumeCard = ({
 
   return (
     <Link to={`/resume/${id}`}>
-      <div className="bg-white p-2 rounded-md border border-emerald-100 transition-all hover:border-emerald-500">
+      <div className="bg-white p-2 rounded-md shadow-sm hover:shadow-md transition-all duration-200 hover:-translate-y-0.5">
         <div className="flex justify-between items-center p-2 mb-2">
           <div>
             <h2 className="text-lg font-semibold text-emerald-900">
