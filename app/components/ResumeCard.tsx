@@ -28,9 +28,9 @@ const ResumeCard = ({
       <div className="bg-white p-2 rounded-md border border-emerald-100 transition-all hover:border-emerald-500">
         <div className="flex justify-between items-center p-2 mb-2">
           <div>
-            <h1 className="text-lg font-semibold text-emerald-900">
+            <h2 className="text-lg font-semibold text-emerald-900">
               {companyName}
-            </h1>
+            </h2>
             <p className="text-sm text-gray-400">{jobTitle}</p>
           </div>
           <ScoreCircle score={feedback.overallScore} />
